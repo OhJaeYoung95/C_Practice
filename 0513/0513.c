@@ -147,7 +147,7 @@ void Shuffle()
 			deckShuffle[i] = cardShuffle2;
 			nextCard = cardShuffle2;
 			cardShuffle2 = 0;
-			continue;
+			break;
 		}
 	}
 
@@ -187,16 +187,33 @@ void CardPrint(int cardNum)
 {
 	// 문양부분 출력 
 	if (cardNum > 0 && cardNum < 14)
-		printf("하트");
+		printf("|♥");
 	else if (cardNum >= 14 && cardNum < 27)
-		printf("다이아몬드");
+		printf("|◆");
 	else if (cardNum >= 27 && cardNum < 40)
-		printf("스페이드");
+		printf("|♠");
 	else if (cardNum >= 40 && cardNum < 53)
-		printf("클로버");
+		printf("|♣");
 
-	// 숫자부분 출력 
-	printf("%d ", (cardNum % 13)+1);		// 숫자출력구간
+	// 숫자부분 출력
+	switch ((cardNum % 13) + 1)
+	{
+		case 1:
+			printf("A| ");
+			break;
+		case 11:
+			printf("J| ");
+			break;
+		case 12:
+			printf("Q| ");
+			break;
+		case 13:
+			printf("K| ");
+			break;
+		default :
+			printf("%d| ", (cardNum % 13) + 1);		// 숫자출력구간
+			break;
+	}
 }
 
 void PlayerBetting()
@@ -255,15 +272,19 @@ void PlayerChoiceCard()
 	}
 	else if ((previousCard % 13) > (nextCard % 13))
 	{
-		CardPrint(nextCard);
-		CardPrint(playerCard);
+		int temp = previousCard;
+		previousCard = nextCard;
+		nextCard = temp;
+
 		CardPrint(previousCard);
+		CardPrint(playerCard);
+		CardPrint(nextCard);
 		printf("\n");
 	}
 
 	// 승리
-	if ((playerCard % 13 + 1> previousCard % 13 + 1) && 
-		(playerCard % 13 + 1 < nextCard % 13 + 1))
+	if ((playerCard % 13 > previousCard % 13) && 
+		(playerCard % 13 < nextCard % 13))
 	{
 		printf("플레이어 승리!!\n");
 		printf("배팅액 두배 획득! : %d\n", bettingMoney * 2);
@@ -271,7 +292,7 @@ void PlayerChoiceCard()
 		printf("플레이어 현재 소지금 : %d\n", playerMoney);
 	}
 	// 패배
-	else if((playerCard % 13 + 1<= previousCard % 13 + 1))
+	else if(playerCard % 13 <= previousCard % 13)
 	{
 		printf("플레이어 패배!!\n");
 		printf("배팅액 차감! : %d\n", bettingMoney);
@@ -284,7 +305,7 @@ void PlayerChoiceCard()
 			printf("게임 종료!\n");
 		}
 	}
-	else if ((playerCard % 13 + 1 >= nextCard % 13 + 1))
+	else if (playerCard % 13 >= nextCard % 13)
 	{
 		printf("플레이어 패배!!\n");
 		printf("배팅액 차감! : %d\n", bettingMoney);
