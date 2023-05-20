@@ -18,5 +18,8 @@
     <ClCompile Include="틱택톡.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="도전프로그래밍3.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
