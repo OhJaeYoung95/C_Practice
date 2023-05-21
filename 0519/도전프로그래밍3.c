@@ -67,8 +67,10 @@ void SnailSort(int(*arr)[10])
 	int num = 0;
 	int count = 1;
 	int side = 0;
-	int col = 0;
-	int row = 0;
+	int colR = 0;
+	int rowR = 0;
+	int colL = 0;
+	int rowL = 0;
 	printf("정수 입력 : ");
 	scanf("%d", &num);
 
@@ -76,32 +78,32 @@ void SnailSort(int(*arr)[10])
 	{
 		if (side % 2 == 0)
 		{
-			for (int i = side; i < num; i++)
+			for (int i = rowR; i < num- rowR; i++)
 			{
-				arr[row][i-col] = count++;
+				arr[rowR][i] = count++;
 			}
-			col++;
+			colR++;
 			side++;
-			//if (side == num - 1)
-			//	break;
 
-			for (int i = side; i < num; i++)
+			for (int i = colR; i < num- colR +1; i++)
 			{
-				arr[side- row][num - col] = count++;
+				arr[i][num - colR] = count++;
 			}
-			row++;
+			rowR++;
 
 		}
 		else if (side % 2 != 0)
 		{
-			for (int i = num - side; i >= 0; i--)
+			rowL++;
+			for (int i = num - rowL-1; i >= rowL -1; i--)
 			{
-				arr[num - row][i - side] = count++;
+				arr[num - rowL][i] = count++;
 			}
+			colL++;
 			side++;
-			for (int i = num - side; i >= 1; i--)
+			for (int i = num - colL-1; i >= colL; i--)
 			{
-				arr[i][col-1] = count++;
+				arr[i][colL -1] = count++;
 			}
 
 		}
