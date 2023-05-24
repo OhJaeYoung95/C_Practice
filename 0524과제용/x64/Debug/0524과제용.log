@@ -1,0 +1,7 @@
+﻿  0524동적할당.c
+C:\Users\USER\Desktop\경일과제용\0524과제용\0524동적할당.c(15,2): warning C4013: 'gets'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\USER\Desktop\경일과제용\0524과제용\0524동적할당.c(12,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\USER\Desktop\경일과제용\0524과제용\0524동적할당.c(17,15): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\USER\Desktop\경일과제용\0524과제용\0524동적할당.c(33,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\USER\Desktop\경일과제용\0524과제용\0524동적할당.c(35,8): warning C4047: '초기화 중': 'char *'의 간접 참조 수준이 'char'과(와) 다릅니다.
+  0524과제용.vcxproj -> C:\Users\USER\Desktop\경일과제용\0524과제용\x64\Debug\0524과제용.exe

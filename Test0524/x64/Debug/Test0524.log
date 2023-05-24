@@ -1,0 +1,4 @@
+﻿  test.c
+C:\Users\USER\Desktop\경일과제용\Test0524\test.c(6,11): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\USER\Desktop\경일과제용\Test0524\test.c(10,12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Test0524.vcxproj -> C:\Users\USER\Desktop\경일과제용\Test0524\x64\Debug\Test0524.exe
