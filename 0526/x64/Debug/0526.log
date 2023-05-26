@@ -1,0 +1,12 @@
+﻿  0526.cpp
+  Calculator.cpp
+  Point.cpp
+  Printer.cpp
+  클래스.cpp
+  코드를 생성하고 있습니다...
+클래스.obj : error LNK2005: "void __cdecl Practice1(void)" (?Practice1@@YAXXZ)이(가) 0526.obj에 이미 정의되어 있습니다.
+클래스.obj : error LNK2005: "void __cdecl Practice2(void)" (?Practice2@@YAXXZ)이(가) 0526.obj에 이미 정의되어 있습니다.
+클래스.obj : error LNK2005: "void __cdecl Practice3(void)" (?Practice3@@YAXXZ)이(가) 0526.obj에 이미 정의되어 있습니다.
+클래스.obj : error LNK2005: main이(가) 0526.obj에 이미 정의되어 있습니다.
+0526.obj : error LNK2019: "void __cdecl BestComImp1::SimpleFunc(void)" (?SimpleFunc@BestComImp1@@YAXXZ)"void __cdecl Practice8(void)" (?Practice8@@YAXXZ) 함수에서 참조되는 확인할 수 없는 외부 기호
+C:\Users\USER\Desktop\경일과제용\0526\x64\Debug\0526.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
