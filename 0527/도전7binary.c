@@ -46,13 +46,12 @@ int Save(Info** infos, int count)
     
     for (int i = 0; i < count; i++)
     {
-        fwrite(infos[i]->name, sizeof(infos[i]->name, 1, fp);
-        fwrite(infos[i]->num, sizeof(infos[i]->name, 1, fp);
+        fwrite(infos[i], sizeof(Info), 1, fp);
     }
-    for (int i = 0; i < count; i++)
-    {
-        fprintf(fp, "%s %s\n", infos[i]->name, infos[i]->num);
-    }
+    //for (int i = 0; i < count; i++)
+    //{
+    //    fprintf(fp, "%s %s\n", infos[i]->name, infos[i]->num);
+    //}
 
     fclose(fp);
     return 1;
@@ -73,23 +72,38 @@ int Load(Info** infos, int* count)
         return 0;
     }
 
-    char name[MAX_NAME_LEN];
-    char num[MAX_PHONE_NUMBER_LEN];
+    //char name[MAX_NAME_LEN];
+    //char num[MAX_PHONE_NUMBER_LEN];
 
-    while (fscanf(fp, "%s %s", name, num) == 2)
+    //while (fscanf(fp, "%s %s", name, num) == 2)
+    //{
+    //    Info* newInfo = (Info*)malloc(sizeof(Info));
+    //    strcpy(newInfo->name, name);
+    //    strcpy(newInfo->num, num);
+
+    //    infos[*count] = newInfo;
+    //    (*count)++;
+    //}
+
+    while (1)
     {
         Info* newInfo = (Info*)malloc(sizeof(Info));
-        strcpy(newInfo->name, name);
-        strcpy(newInfo->num, num);
+        int read = fread(newInfo, sizeof(Info), 1, fp);  // 파일에서 Info 구조체 전체를 읽기
 
-        infos[*count] = newInfo;
-        (*count)++;
+        if (read == 1)
+        {
+            infos[*count] = newInfo;
+            (*count)++;
+        }
+        else
+        {
+            free(newInfo);
+            break;
+        }
     }
-
     fclose(fp);
     return 1;
 }
-
 int Insert(Info* infos[], int* size, int*count)
 {
     if (*count == *size)
@@ -112,9 +126,85 @@ int Insert(Info* infos[], int* size, int*count)
     (*count)++;
 
 }
-int Find(Info* arr[], int len, const char* name);
-void PrintAll(Info* arr[], int len);
+void Delete(Info** infos, int* count) 
+{
+    printf("-----------------------------------\n");
+    printf("[ DELETE ]\n");
+    printf("Delete Info's Name : ");
+    char selectInfo[MAX_NAME_LEN];
+    scanf("%s", selectInfo);
+    int index = -1;
 
+    // 확인부분
+    for (int i = 0; i < *count; i++)
+    {
+        if (strcmp(infos[i]->name, selectInfo) == 0)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    // 삭제부분
+    if (index != -1)
+    {
+        free(infos[index]);
+        infos[index] = infos[*count - 1];
+        (*count)--;
+        printf("                  Data Deleted\n");
+        printf("-----------------------------------\n\n\n");
+    }
+    else
+    {
+        printf("Not Found!\n");
+        printf("-----------------------------------\n\n\n");
+    }
+}
+void Search(Info** infos, int* count)
+{
+    printf("-----------------------------------\n");
+    printf("[ SEARCH ]\n");
+    printf("Search Info's Name : ");
+    char selectInfo[MAX_NAME_LEN];
+    scanf("%s", selectInfo);
+    int index = -1;
+
+    // 확인부분
+    for (int i = 0; i < *count; i++)
+    {
+        if (strcmp(infos[i]->name, selectInfo) == 0)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    // 검색부분
+    if (index != -1)
+    {
+        printf("Search Name : %s\n", infos[index]->name);
+        printf("Search Tel Number : %s\n", infos[index]->num);
+        printf("                  Data Searched\n");
+        printf("-----------------------------------\n\n\n");
+    }
+    else
+    {
+        printf("Not Found!\n");
+        printf("-----------------------------------\n\n\n");
+    }
+}
+void PrintAll(Info** infos, int* count)
+{
+    printf("-----------------------------------\n");
+    printf("[ Print All Data ]\n");
+    for (int i = 0; i < *count; i++)
+    {
+        printf("Name : %s\n", infos[i]->name);
+        printf("Tel Number : %s\n", infos[i]->num);
+    }
+    printf("                  All Data Printed\n");
+    printf("-----------------------------------\n\n\n");
+}
 int main()
 {
     int size = 10;
@@ -122,7 +212,6 @@ int main()
 
     Item menu = 1;
     int index = 0;
-    char selectInfo[20];
 
     Info** infos = (Info**)malloc(sizeof(Info*) * size);
 
@@ -143,79 +232,13 @@ int main()
             Insert(infos, &size, &count);
             break;
         case DELETE:
-            printf("-----------------------------------\n");
-            printf("[ DELETE ]\n");
-            printf("Delete Info's Name : ");
-            scanf("%s", selectInfo);
-            index = -1;
-
-            // 확인부분
-            for (int i = 0; i < count; i++)
-            {
-                if (strcmp(infos[i]->name, selectInfo) == 0)
-                {
-                    index = i;
-                    break;
-                }
-            }
-
-            // 삭제부분
-            if (index != -1)
-            {
-                free(infos[index]);
-                infos[index] = infos[count - 1];
-                count--;
-                printf("                  Data Deleted\n");
-                printf("-----------------------------------\n\n\n");
-            }
-            else
-            {
-                printf("Not Found!\n");
-                printf("-----------------------------------\n\n\n");
-            }
+            Delete(infos, &count);
             break;
         case SEARCH:
-            printf("-----------------------------------\n");
-            printf("[ SEARCH ]\n");
-            printf("Search Info's Name : ");
-            scanf("%s", selectInfo);
-            index = -1;
-
-            // 확인부분
-            for (int i = 0; i < count; i++)
-            {
-                if (strcmp(infos[i]->name, selectInfo) == 0)
-                {
-                    index = i;
-                    break;
-                }
-            }
-
-            // 검색부분
-            if (index != -1)
-            {
-                printf("Search Name : %s\n", infos[index]->name);
-                printf("Search Tel Number : %s\n", infos[index]->num);
-                printf("                  Data Searched\n");
-                printf("-----------------------------------\n\n\n");
-            }
-            else
-            {
-                printf("Not Found!\n");
-                printf("-----------------------------------\n\n\n");
-            }
+            Search(infos, &count);
             break;
         case PRINTALL:
-            printf("-----------------------------------\n");
-            printf("[ Print All Data ]\n");
-            for (int i = 0; i < count; i++)
-            {
-                printf("Name : %s\n", infos[i]->name);
-                printf("Tel Number : %s\n", infos[i]->num);
-            }
-            printf("                  All Data Printed\n");
-            printf("-----------------------------------\n\n\n");
-
+            PrintAll(infos, &count);
             break;
         case SAVE:
             if (Save(infos, count))
