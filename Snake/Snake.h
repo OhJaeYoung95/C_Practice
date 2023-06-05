@@ -2,36 +2,45 @@
 //#include "Example.h"
 #include "GameFramework.h"
 #include "TileType.h"
+#include "Body.h"
 
-enum class DIR
+enum class Dir
 {
-	Up = 1,
+	Up = 0,
 	Right,
-	Down,
+	Down ,
 	Left
 };
 
-class Snake : public GameFramework
+class Snake
 {
 private:
-	bool update;
-	bool isGetKey;
+	int dirSelect;
 	int xPos;
 	int yPos;
-	DIR dir;
+	Dir dir;
 	TileType type;
+	Body* body;
+	int bodyLen;
+
+
 public:
 	Snake();
-	Snake(int w, int h, int xpos, int ypos, DIR dir, TileType type);
+	Snake(int _dirSelect, int _xpos, int _ypos, Dir _dir, TileType _type, int _bodyLen);
 	~Snake();
 
-	void Init() override;
-	void Update(float dt) override;
-	void Draw() override;
-	void Release() override;
-
+	int GetXPos();
+	int GetYPos();
 	void SnakeMove();
+	void SetSnakeDir(int dir);
+	int GetSnakeDir();
+	void SnakeRoatateR();
+	void SnakeRoatateL();
+	void SetSnakeDirControl(Dir _dir);
 
 
+	int GetBodyLen();
+	void FollowHead();
+	int GetBodyXPos(int index);
+	int GetBodyYPos(int index);
 };
-

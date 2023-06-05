@@ -1,16 +1,17 @@
 #include "Example.h"
+#include "GameManager.h"
 #include "Snake.h"
 
 
-int main(int argc, char* argv[])
+int main()
 {
-    Snake snake(85, 20, 10, 5, DIR::Left, TileType::Snake);
-    snake.ScreenInit();
-    snake.Init();
-    snake.Do();
-    snake.Release();
-    snake.ScreenRelease();
-    return 0;
+	GameManager game(80, 80);
+	game.ScreenInit();
+	game.Init();
+	game.Do();
+	game.Release();
+	game.ScreenRelease();    
+	return 0;
 }
 
 //Example game(85, 20);

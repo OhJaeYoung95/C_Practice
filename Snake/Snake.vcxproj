@@ -18,6 +18,24 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Apple.h" />
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Example.h" />
+    <ClInclude Include="GameFramework.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="TileType.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Apple.cpp" />
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Example.cpp" />
+    <ClCompile Include="GameFramework.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Snake.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,18 +144,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Example.h" />
-    <ClInclude Include="GameFramework.h" />
-    <ClInclude Include="Snake.h" />
-    <ClInclude Include="TileType.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Example.cpp" />
-    <ClCompile Include="GameFramework.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Snake.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
